@@ -66,6 +66,12 @@ class PrivateCarTest(TestCase):
 
 
 class PublicDriverTest(TestCase):
+    def test_login_required(self) -> None:
+        response = self.client.get(DRIVER_URL)
+        self.assertNotEqual(response.status_code, 200)
+
+
+class PrivateDriverTest(TestCase):
     def setUp(self) -> None:
         response = self.client.get(DRIVER_URL)
         self.assertNotEqual(response.status_code, 200)
